@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfExtendedFileValidatorPlugin</name>
+ <channel>pear.symfony-project.com</channel>
+ <summary>Extended file validator</summary>
+ <description>This plugin extends sfFileValidator to add verification of the height and width of an image sent by a form.</description>
+ <lead>
+  <name>Vincent Lemaire</name>
+  <user>vlemaire</user>
+  <email>symfony@vincentlemaire.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2008-08-18</date>
+ <time>09:09:43</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>First public release</notes>
+ <contents>
+  <dir name="/">
+   <dir name="lib">
+    <dir name="validator">
+     <file name="sfExtendedFileValidator.class.php" role="data" />
+    </dir>
+   </dir>
+   <file name="README" role="data" />
+   <file name="LICENSE" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.0.0</min>
+    <max>1.2.0</max>
+    <exclude>1.2.0</exclude>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-08-18</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>First public release</notes>
+  </release>
+ </changelog>
+</package>

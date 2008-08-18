@@ -1,0 +1,54 @@
+# sfExtendedFileValidatorPlugin #
+
+## Introduction ##
+This plugin extends sfFileValidator to add verification of the height and width of an image sent by a form.
+
+## Features ##
+
+ * check minimum/maximum width/height/weight of an image sent by a form
+
+## Get it installed ##
+
+ * Go to your project's root
+
+ * Install the plugin:
+
+    ./symfony plugin-install http://plugins.symfony-project.com/sfExtendedFileValidatorPlugin
+
+ * Clear cache:
+
+    ./symfony cc
+
+## Usage ##
+
+Edit your validate.yml to add file validation:
+
+    fields:
+      picture:
+        file:       True
+        sfExtendedFileValidator:
+          mime_types:
+            - 'image/jpeg'
+            - 'image/pjpeg'
+          mime_types_error: You must send a JPEG image
+          max_size: 1024000
+          max_size_error: You must send an image with a maximum weight of 1024000 bytes
+          min_width: 100
+          min_width_error: You must send an image with a minimum width of 100 pixels
+          max_width: 1000
+          max_width_error: You must send an image with a maximum width of 1000 pixels
+          min_height: 100
+          min_height_error: You must send an image with a minimum height of 100 pixels
+          max_height: 1000
+          max_height_error: You must send an image with a maximum height of 1000 pixels
+
+## License and credits ##
+This plugin has been developed by [Vincent Lemaire](http://www.vincentlemaire.com) and is licensed under the MIT license.
+
+## Todo ##
+ * unit-tests
+
+## Changelog ##
+
+ * version 0.1 - 2008-08-18
+  * First public release
