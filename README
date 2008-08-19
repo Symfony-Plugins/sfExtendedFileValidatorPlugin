@@ -2,6 +2,7 @@
 
 ## Introduction ##
 This plugin extends sfFileValidator to add:
+
  * verification of the minimum/maximum/exact height and width of an image sent by a form
  * verification of image aspect ratio
  * deactivation of the interlacing of a JPEG image
@@ -45,6 +46,7 @@ Edit your validate.yml to add file validation:
           aspect_error:     You must send an image with an aspect ratio of 2
 
 You can use all the options proposed by sfFileValidator and add this new options:
+
  * exact_width (exact_width_error option available) : checks the exact width
  * min_width (min_width_error option available) : checks the minimum width
  * max_width (max_width_error option available) : checks the maximum width
@@ -60,6 +62,7 @@ This plugin is maintained by [Vincent Lemaire](http://www.vincentlemaire.com) an
 He is licensed under the MIT license.
 
 ## Todo ##
+
  * unit-tests
  * check if the image is noninterlaced before resaving
 

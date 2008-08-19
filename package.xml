@@ -3,7 +3,7 @@
  <name>sfExtendedFileValidatorPlugin</name>
  <channel>pear.symfony-project.com</channel>
  <summary>Extended file validator</summary>
- <description>This plugin extends sfFileValidator to add verification of the minimum/maximum/exact height and width of an image sent by a form and deactivation of the interlacing of a JPEG image</description>
+ <description>This plugin extends sfFileValidator to add verification of the minimum/maximum/exact height and width of an image sent by a form, verification of image aspect ratio and deactivation of the interlacing of a JPEG image</description>
  <lead>
   <name>Vincent Lemaire</name>
   <user>vlemaire</user>
@@ -27,6 +27,7 @@
   <api>beta</api>
  </stability>
  <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>_</notes>
  <contents>
   <dir name="/">
    <dir name="lib">
