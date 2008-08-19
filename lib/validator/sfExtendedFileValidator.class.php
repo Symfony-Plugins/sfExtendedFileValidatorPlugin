@@ -24,16 +24,12 @@ class sfExtendedFileValidator extends sfFileValidator
     {
       return false;
     }
-    
-    /*
-     * $imgData[0] retrieve width
-     * $imgData[1] retrieve height
-     */
-    $imgData = @getimagesize($value['tmp_name']);
+
+    list($width, $height, $image_type) = @getimagesize($value['tmp_name']);
     
     $min_width = $this->getParameter('min_width');
 
-    if ($min_width !== null && $min_width > $imgData[0])
+    if ($min_width !== null && $min_width > $width)
     {
       $error = $this->getParameter('min_width_error');
 
@@ -41,7 +37,8 @@ class sfExtendedFileValidator extends sfFileValidator
     }
 
     $max_width = $this->getParameter('max_width');
-    if ($max_width !== null && $max_width < $imgData[0])
+
+    if ($max_width !== null && $max_width < $width)
     {
       $error = $this->getParameter('max_width_error');
 
@@ -50,7 +47,7 @@ class sfExtendedFileValidator extends sfFileValidator
 
     $min_height = $this->getParameter('min_height');
 
-    if ($min_height !== null && $min_height > $imgData[1])
+    if ($min_height !== null && $min_height > $height)
     {
       $error = $this->getParameter('min_height_error');
 
@@ -59,7 +56,7 @@ class sfExtendedFileValidator extends sfFileValidator
 
     $max_height = $this->getParameter('max_height');
 
-    if ($max_height !== null && $max_height < $imgData[1])
+    if ($max_height !== null && $max_height < $height)
     {
       $error = $this->getParameter('max_height_error');
 
@@ -68,7 +65,7 @@ class sfExtendedFileValidator extends sfFileValidator
     
     $exact_width = $this->getParameter('exact_width');
 
-    if ($exact_width !== null && $exact_width != $imgData[0])
+    if ($exact_width !== null && $exact_width != $width)
     {
       $error = $this->getParameter('exact_width_error');
 
@@ -77,7 +74,7 @@ class sfExtendedFileValidator extends sfFileValidator
 
     $exact_height = $this->getParameter('exact_height');
 
-    if ($exact_height !== null && $exact_height != $imgData[1])
+    if ($exact_height !== null && $exact_height != $height)
     {
       $error = $this->getParameter('exact_height_error');
 
@@ -86,23 +83,18 @@ class sfExtendedFileValidator extends sfFileValidator
 
     $aspect = $this->getParameter('aspect');
 
-    if ($aspect !== null && ( is_float($aspect) || is_int($aspect) ) && $aspect != $imgData[0]/$imgData[1])
+    if ($aspect !== null && (is_float($aspect) || is_int($aspect)) && $aspect != $width/$height)
     {
       $error = $this->getParameter('aspect_error');
 
       return false;
     }
-    
-     // If we want to resave jpegs to noninterlaced (unfortunately this cannot be checked), resave the image using imageinterlace(0) and jpeg quality 90
-     // Todo: Check if the image is noninterlaced before resaving
-    if ( $imgData[2]==IMAGETYPE_JPEG && $this->getParameter('resave_to_noninterlaced') )
+
+    if ($this->getParameter('disable_interlacement'))
     {
-      $temp_resource = imagecreatefromjpeg($value['tmp_name']);
-      imageinterlace($temp_resource,0);
-      imagejpeg($temp_resource,$value['tmp_name'],90);
-      imagedestroy($temp_resource);
+      sfExtendedFileValidatorToolkit::DisableImageInterlacement($value['tmp_name']);
     }
-    
+
     return true;
   }
 
@@ -110,21 +102,21 @@ class sfExtendedFileValidator extends sfFileValidator
   {
     parent::initialize($context);
 
+    $this->setParameter('exact_width', null);
+    $this->setParameter('exact_width_error', 'File has an incorrect width');
     $this->setParameter('min_width', null);
     $this->setParameter('min_width_error', 'File has a width too small');
     $this->setParameter('max_width', null);
     $this->setParameter('max_width_error', 'File has a width too big');
+    $this->setParameter('exact_height', null);
+    $this->setParameter('exact_height_error', 'File has an incorrect height');
     $this->setParameter('min_height', null);
     $this->setParameter('min_height_error', 'File has a height too small');
     $this->setParameter('max_height', null);
     $this->setParameter('max_height_error', 'File has a height too big');
-    $this->setParameter('exact_width', null);
-    $this->setParameter('exact_width_error', 'File has an incorrect width');
-    $this->setParameter('exact_height', null);
-    $this->setParameter('exact_height_error', 'File has an incorrect height');
     $this->setParameter('aspect', null);
     $this->setParameter('aspect_error', 'File has an incorrect aspect ratio');
-    $this->setParameter('resave_to_noninterlaced',false);
+    $this->setParameter('disable_interlacement', false);
     
     $this->getParameterHolder()->add($parameters);
 

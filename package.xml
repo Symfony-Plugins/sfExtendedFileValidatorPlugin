@@ -3,28 +3,34 @@
  <name>sfExtendedFileValidatorPlugin</name>
  <channel>pear.symfony-project.com</channel>
  <summary>Extended file validator</summary>
- <description>This plugin extends sfFileValidator to add verification of the height and width of an image sent by a form.</description>
+ <description>This plugin extends sfFileValidator to add verification of the minimum/maximum/exact height and width of an image sent by a form and deactivation of the interlacing of a JPEG image</description>
  <lead>
   <name>Vincent Lemaire</name>
   <user>vlemaire</user>
   <email>symfony@vincentlemaire.com</email>
   <active>yes</active>
  </lead>
- <date>2008-08-18</date>
- <time>09:09:43</time>
+ <developer>
+  <name>Anders Stalheim Øfsdahl</name>
+  <user>andersapt</user>
+  <email>anders@apt.no</email>
+  <active>yes</active>
+ </developer>
+ <date>2008-08-19</date>
+ <time>18:07:26</time>
  <version>
-  <release>0.1.0</release>
-  <api>0.1.0</api>
+  <release>0.2.0</release>
+  <api>0.2.0</api>
  </version>
  <stability>
   <release>beta</release>
   <api>beta</api>
  </stability>
  <license uri="http://www.symfony-project.com/license">MIT license</license>
- <notes>First public release</notes>
  <contents>
   <dir name="/">
    <dir name="lib">
+    <file name="sfExtendedFileValidatorToolkit.class.php" role="data" />
     <dir name="validator">
      <file name="sfExtendedFileValidator.class.php" role="data" />
     </dir>
@@ -52,6 +58,23 @@
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>0.2.0</release>
+    <api>0.2.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-08-19</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>
+    * added verification of the exact width and height (thanks to andersapt)
+    * added method who turns off JPEG image interlacement (thanks to andersapt)
+    * updated documentation
+   </notes>
+  </release>
   <release>
    <version>
     <release>0.1.0</release>

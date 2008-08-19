@@ -1,11 +1,10 @@
 # sfExtendedFileValidatorPlugin #
 
 ## Introduction ##
-This plugin extends sfFileValidator to add verification of the height and width of an image sent by a form.
-
-## Features ##
-
- * check minimum/maximum width/height/weight of an image sent by a form
+This plugin extends sfFileValidator to add:
+ * verification of the minimum/maximum/exact height and width of an image sent by a form
+ * verification of image aspect ratio
+ * deactivation of the interlacing of a JPEG image
 
 ## Get it installed ##
 
@@ -25,30 +24,49 @@ Edit your validate.yml to add file validation:
 
     fields:
       picture:
-        file:       True
+        file:               True
         sfExtendedFileValidator:
           mime_types:
             - 'image/jpeg'
             - 'image/pjpeg'
           mime_types_error: You must send a JPEG image
-          max_size: 1024000
-          max_size_error: You must send an image with a maximum weight of 1024000 bytes
-          min_width: 100
-          min_width_error: You must send an image with a minimum width of 100 pixels
-          max_width: 1000
-          max_width_error: You must send an image with a maximum width of 1000 pixels
-          min_height: 100
+          max_size:         1024000
+          max_size_error:   You must send an image with a maximum weight of 1024000 bytes
+          # Options added by sfExtendedFileValidatorPlugin
+          min_width:        100
+          min_width_error:  You must send an image with a minimum width of 100 pixels
+          max_width:        1000
+          max_width_error:  You must send an image with a maximum width of 1000 pixels
+          min_height:       100
           min_height_error: You must send an image with a minimum height of 100 pixels
-          max_height: 1000
+          max_height:       1000
           max_height_error: You must send an image with a maximum height of 1000 pixels
+          aspect:           2
+          aspect_error:     You must send an image with an aspect ratio of 2
+
+You can use all the options proposed by sfFileValidator and add this new options:
+ * exact_width (exact_width_error option available) : checks the exact width
+ * min_width (min_width_error option available) : checks the minimum width
+ * max_width (max_width_error option available) : checks the maximum width
+ * exact_height (exact_height_error option available) : checks the exact height
+ * min_height (min_height_error option available) : checks the minimum height
+ * max_height (max_height_error option available) : checks the maximum height
+ * aspect (aspect_error option available) : checks image aspect ratio
+ * disable_interlacement : disable image interlacement
 
 ## License and credits ##
-This plugin has been developed by [Vincent Lemaire](http://www.vincentlemaire.com) and is licensed under the MIT license.
+This plugin is maintained by [Vincent Lemaire](http://www.vincentlemaire.com) and developed with [Anders Stalheim Øfsdahl](http://www.apt.no)
+
+He is licensed under the MIT license.
 
 ## Todo ##
  * unit-tests
+ * check if the image is noninterlaced before resaving
 
 ## Changelog ##
 
+ * version 0.2 - 2008-08-19
+  * added verification of the exact width and height (thanks to andersapt)
+  * added method who turns off JPEG image interlacement (thanks to andersapt)
  * version 0.1 - 2008-08-18
   * First public release
