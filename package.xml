@@ -19,8 +19,8 @@
  <date>2008-08-19</date>
  <time>18:07:26</time>
  <version>
-  <release>0.2.0</release>
-  <api>0.2.0</api>
+  <release>0.2.1</release>
+  <api>0.2.1</api>
  </version>
  <stability>
   <release>beta</release>
@@ -59,6 +59,19 @@
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <version>
+    <release>0.2.1</release>
+    <api>0.2.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2008-08-19</date>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <notes>update markdown format in documentation</notes>
+  </release>
   <release>
    <version>
     <release>0.2.0</release>
